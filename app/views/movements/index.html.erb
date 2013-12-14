@@ -1,10 +1,11 @@
-<h1>Listing movements</h1>
+<h1>Movimientos</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Description</th>
-      <th>Amount</th>
+      <th>Fecha</th>
+      <th>Descripción</th>
+      <th>Monto</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,8 +15,9 @@
   <tbody>
     <% @movements.each do |movement| %>
       <tr>
+        <td><%= movement.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= movement.description %></td>
-        <td><%= movement.amount %></td>
+        <td><%= number_to_currency movement.amount, delimiter: ".", precision: 0 %></td>
         <td><%= link_to 'Show', movement %></td>
         <td><%= link_to 'Edit', edit_movement_path(movement) %></td>
         <td><%= link_to 'Destroy', movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
