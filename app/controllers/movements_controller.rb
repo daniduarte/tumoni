@@ -5,6 +5,7 @@ class MovementsController < ApplicationController
   # GET /movements.json
   def index
     @movements = Movement.all
+    @pockets = Pocket.all
   end
 
   # GET /movements/1
