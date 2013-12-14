@@ -5,7 +5,7 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    @movements = Movement.all
+    @movements = Movement.where user_id: current_user.id
     @pockets = Pocket.all
   end
 
@@ -71,6 +71,6 @@ class MovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movement_params
-      params.require(:movement).permit(:description, :amount, :created_at, :pocket_id)
+      params.require(:movement).permit(:description, :amount, :created_at, :pocket_id, :user_id)
     end
 end
