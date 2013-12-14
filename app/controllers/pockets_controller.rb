@@ -1,5 +1,6 @@
 class PocketsController < ApplicationController
   before_action :set_pocket, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /pockets
   # GET /pockets.json

@@ -1,0 +1,27 @@
+.container
+  .row
+
+    .col-xs-12
+
+      %h1 Bolsillo
+
+      %table.table
+        %thead
+          %tr
+            %th Nombre
+            %th 
+            %th 
+            %th 
+
+
+        %tbody
+          - @pockets.each do |pocket|
+            %tr
+              %td= pocket.name
+              %td= link_to 'Show', pocket
+              %td= link_to 'Edit', edit_pocket_path(pocket)
+              %td= link_to 'Destroy', pocket, method: :delete, data: { confirm: 'Are you sure?' }
+
+      %br
+
+      = link_to 'Crear bolsillo', new_pocket_path, :class => "btn btn-primary"
