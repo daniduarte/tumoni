@@ -1,0 +1,30 @@
+%h1 Movimientos
+
+%ul.nav.nav-tabs
+  - @pockets.each_with_index do |p, index|
+    %li(class="#{"active" if index == 0}")
+      %a(href="#pocket#{p.id}" data-toggle="tab")= p.name
+
+.tab-content
+  - @pockets.each_with_index do |p, index|
+    %div(id="pocket#{p.id}" class="tab-pane #{"active" if index == 0}")
+      %table.table
+        %thead
+          %tr 
+            %th Fecha
+            %th Monto
+            %th Descripción        
+            %th.options Opciones
+
+        %tbody
+          - @movements.where(pocket_id: p.id).each do |movement|
+            %tr 
+              %td.hidden-xs= movement.created_at.strftime("%d/%m/%Y")
+              %td= number_to_currency movement.amount, delimiter: ".", precision: 0
+              %td= movement.description 
+              %td.options 
+                .btn-group
+                  = link_to "Editar", edit_movement_path(movement), :class => "btn btn-default"
+                  = link_to "Eliminar", movement, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"
+
+= link_to 'Crear movimiento', new_movement_path, :class => "btn btn-primary"
