@@ -1,4 +1,6 @@
 Tumoni2::Application.routes.draw do
+  resources :pockets
+
   resources :movements
 
   # The priority is based upon order of creation: first created -> highest priority.
