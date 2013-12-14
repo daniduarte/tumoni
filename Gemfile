@@ -32,10 +32,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'haml'
+gem 'haml-rails'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails',
                               :branch => '3.0.0'
+
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
