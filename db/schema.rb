@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214192841) do
+ActiveRecord::Schema.define(version: 20131214194647) do
 
   create_table "movements", force: true do |t|
     t.text     "description"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131214192841) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pocket_id"
+    t.integer  "user_id"
   end
 
   create_table "pockets", force: true do |t|
