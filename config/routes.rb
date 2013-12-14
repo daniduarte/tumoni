@@ -1,4 +1,5 @@
 Tumoni2::Application.routes.draw do
+  devise_for :users
   resources :pockets
 
   resources :movements

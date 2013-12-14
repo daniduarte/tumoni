@@ -1,5 +1,6 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /movements
   # GET /movements.json
