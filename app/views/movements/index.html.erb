@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Bolsillo</th>
       <th>Fecha</th>
       <th>Descripción</th>
       <th>Monto</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @movements.each do |movement| %>
       <tr>
+        <td><%= movement.pocket_id %></td>
         <td><%= movement.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= movement.description %></td>
         <td><%= number_to_currency movement.amount, delimiter: ".", precision: 0 %></td>
