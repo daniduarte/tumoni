@@ -1,3 +1,3 @@
 class Pocket < ActiveRecord::Base
-  :has_many movements
+  has_many :movements
 end
