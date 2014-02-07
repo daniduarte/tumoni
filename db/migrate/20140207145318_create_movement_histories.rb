@@ -1,6 +1,6 @@
-class CreateHistories < ActiveRecord::Migration
+class CreateMovementHistories < ActiveRecord::Migration
   def change
-    create_table :histories do |t|
+    create_table :movement_histories do |t|
       t.text :description
       t.integer :amount
       t.integer :movement_id

@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140207145318) do
 
-  create_table "histories", force: true do |t|
+  create_table "movement_histories", force: true do |t|
     t.text     "description"
     t.integer  "amount"
     t.integer  "movement_id"
