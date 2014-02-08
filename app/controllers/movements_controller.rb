@@ -23,6 +23,32 @@ class MovementsController < ApplicationController
   def edit
   end
 
+  def movement_history_create
+    last_movement = Movement.last
+
+    @movement_history = MovementHistory.new(
+      :description => last_movement.description,
+      :amount => last_movement.amount, 
+      :movement_id => last_movement.id,
+      :pocket_id => last_movement.pocket_id,
+      :user_id => last_movement.user_id)
+
+    @movement_history.save
+  end
+
+  def movement_history_update
+    last_movement = Movement.order(updated_at: :desc).take
+
+    @movement_history = MovementHistory.new(
+      :description => last_movement.description,
+      :amount => last_movement.amount, 
+      :movement_id => last_movement.id,
+      :pocket_id => last_movement.pocket_id,
+      :user_id => last_movement.user_id)
+
+    @movement_history.save
+  end
+
   # POST /movements
   # POST /movements.json
   def create
@@ -32,6 +58,7 @@ class MovementsController < ApplicationController
       if @movement.save
         format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @movement }
+        movement_history_create
       else
         format.html { render action: 'new' }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
@@ -46,6 +73,7 @@ class MovementsController < ApplicationController
       if @movement.update(movement_params)
         format.html { redirect_to @movement, notice: 'Movement was successfully updated.' }
         format.json { head :no_content }
+        movement_history_update
       else
         format.html { render action: 'edit' }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
