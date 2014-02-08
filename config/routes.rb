@@ -1,4 +1,4 @@
-Tumoni2::Application.routes.draw do
+Tumoni::Application.routes.draw do
   get "welcome/index"
   devise_for :users
   resources :pockets

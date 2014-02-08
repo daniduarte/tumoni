@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Tumoni2::Application.load_tasks
+Tumoni::Application.load_tasks

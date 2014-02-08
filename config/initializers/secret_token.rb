@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Tumoni2::Application.config.secret_key_base = 'ef664f5a968c297d7aef317fb85b68a09e61fcbcae06796b07ec03033218e25f31694eb171ae1d498597bc4b00b75550e37c3b980e188f929ae2daffc934e98d'
+Tumoni::Application.config.secret_key_base = 'ef664f5a968c297d7aef317fb85b68a09e61fcbcae06796b07ec03033218e25f31694eb171ae1d498597bc4b00b75550e37c3b980e188f929ae2daffc934e98d'
