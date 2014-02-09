@@ -1,0 +1,38 @@
+.container
+  .row
+    .col-xs-3
+      &nbsp;
+    .col-xs-6
+      .module.module-default.no-hover
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-user
+            Registro
+
+        .module-body
+          = form_for resource, :as => resource_name, :url => registration_path(resource_name), html: { class: 'form-horizontal', role: 'form' } do |f|
+            / = devise_error_messages!
+
+            .form-group
+              = f.label :email, 'Correo electrónico', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.email_field :email, :autofocus => true, class: 'form-control'
+
+            .form-group
+              = f.label :password, 'Contraseña', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.password_field :password, class: 'form-control'
+
+            .form-group
+              = f.label :password_confirmation, 'Confirmar contraseña', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.password_field :password_confirmation, class: 'form-control'
+
+            .form-group
+              .col-xs-3
+                &nbsp;
+              .col-xs-9
+                = f.submit "Registrar", class: 'btn btn-primary'
+
+        .module-footer
+          = render "devise/shared/links"
