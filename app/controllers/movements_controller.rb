@@ -5,18 +5,21 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    @movements = Movement.where user_id: current_user.id
-    @pockets = Pocket.all
+    # @movements = Movement.where user_id: current_user.id
+    # @pockets = Pocket.all
+    redirect_to pockets_url
   end
 
   # GET /movements/1
   # GET /movements/1.json
   def show
+    redirect_to pockets_url
   end
 
   # GET /movements/new
   def new
     @movement = Movement.new
+    # @pocket = Pocket.where id: params[:pocket_id]
   end
 
   # GET /movements/1/edit
@@ -56,7 +59,7 @@ class MovementsController < ApplicationController
 
     respond_to do |format|
       if @movement.save
-        format.html { redirect_to @movement, notice: 'Movement was successfully created.' }
+        format.html { redirect_to "/pockets/#{@movement.pocket_id}", notice: 'Movement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @movement }
         movement_history_create
       else
@@ -86,7 +89,7 @@ class MovementsController < ApplicationController
   def destroy
     @movement.destroy
     respond_to do |format|
-      format.html { redirect_to movements_url }
+      format.html { redirect_to pockets_url }
       format.json { head :no_content }
     end
   end

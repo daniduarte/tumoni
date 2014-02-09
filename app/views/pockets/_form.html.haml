@@ -1,0 +1,30 @@
+.module.module-default.no-hover
+  .module-header
+    %h3.title.text-center
+      %i.fa.fa-plus
+      - if @pocket.new_record?
+        Crear nuevo bolsillo
+      - else
+        Editar bolsillo
+
+  .module-body
+    = form_for @pocket, html: { class: 'form-horizontal', role: 'form' } do |f|
+      / - if @pocket.errors.any?
+      /   #error_explanation
+      / %h2= pluralize(@pocket.errors.count, "error") prohibited this pocket from being saved:
+      / %ul
+      /   - @pocket.errors.full_messages.each do |msg|
+      /     %li= msg
+
+      .form-group
+        = f.label :name, 'Nombre', class: 'col-xs-3 control-label'
+        .col-xs-9
+          = f.text_field :name, class: 'form-control'
+
+      .form-group
+        .col-xs-3
+          &nbsp;
+        .col-xs-9
+          = link_to 'Cancelar', pockets_path, class: 'btn btn-default'
+          = f.submit 'Guardar', class: 'btn btn-primary'
+        .clearfix

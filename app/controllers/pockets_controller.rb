@@ -31,7 +31,7 @@ class PocketsController < ApplicationController
 
     respond_to do |format|
       if @pocket.save
-        format.html { redirect_to @pocket, notice: 'Pocket was successfully created.' }
+        format.html { redirect_to pockets_url, notice: 'Pocket was successfully created.' }
         format.json { render action: 'show', status: :created, location: @pocket }
       else
         format.html { render action: 'new' }

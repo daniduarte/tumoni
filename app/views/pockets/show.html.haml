@@ -1,5 +1,3 @@
-%p#notice= notice
-
 - @balance = 0
 - @movements.where(pocket_id: @pocket.id).each do |m| 
   - @balance = @balance + m.amount
@@ -18,8 +16,8 @@
                 = @pocket.name
             .col-xs-4
               .pull-right 
-                = link_to 'Editar bolsillo', edit_pocket_path(@pocket), class: 'btn btn-default'
-                = link_to 'Crear movimiento', new_movement_path(@movement), class: 'btn btn-primary'
+                / = link_to 'Editar bolsillo', edit_pocket_path(@pocket), class: 'btn btn-default'
+                = link_to 'Crear movimiento', new_movement_path(@movement, pocket_id: @pocket.id), class: 'btn btn-primary'
             .clearfix
 
         .module-body.no-padding

@@ -90,20 +90,50 @@ body
       height: 35px
       padding-top: 5px
 
-  .balance
-    margin-bottom: 10px
-    position: relative
+.balance
+  margin-bottom: 10px
+  position: relative
+  display: block
+  text-align: center
+  span
+    color: #ccc
+    position: absolute
+    bottom: -10px
+    right: 0
+    left: 0
+    text-align: center
+  strong
+    font-size: 32px
     display: block
     text-align: center
-    span
-      color: #ccc
-      position: absolute
-      bottom: -10px
-      right: 0
-      left: 0
-      text-align: center
-    strong
-      font-size: 32px
-      display: block
-      text-align: center
+
+.btn-add
+  height: 165px
+  text-align: center
+  position: relative
+  display: block
+  .fa
+    clear: both
+    display: block
+    font-size: 50px
+    position: absolute
+    top: 50px
+    left: 0
+    right: 0
+    color: #ccc
+  a
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    display: block
+    font-size: 16px
+    color: #ccc
+    padding-top: 105px
+  &:hover
+    a, .fa
+      color: $color-primary
+      text-decoration: none
+
 
