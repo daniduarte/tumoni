@@ -1,0 +1,51 @@
+%p#notice= notice
+
+- @balance = 0
+- @movements.where(pocket_id: @pocket.id).each do |m| 
+  - @balance = @balance + m.amount
+
+.container
+  .row
+    .col-xs-12
+      .module.module-default.no-hover
+        .module-header
+          .row
+            .col-xs-4
+              = link_to 'Volver a bolsillos', pockets_path, class: 'pull-left btn btn-default'
+            .col-xs-4
+              %h3.title.text-center
+                %i.fa.fa-suitcase
+                = @pocket.name
+            .col-xs-4
+              .pull-right 
+                = link_to 'Editar bolsillo', edit_pocket_path(@pocket), class: 'btn btn-default'
+                = link_to 'Crear movimiento', new_movement_path(@movement), class: 'btn btn-primary'
+            .clearfix
+
+        .module-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th Fecha
+                %th Monto
+                %th Descripci&oacute;n
+                %th Opciones
+            %tbody
+              - @movements.where(pocket_id: @pocket.id).each do |movement|
+                %tr 
+                  %td.hidden-xs= movement.created_at.strftime("%d/%m/%Y")
+                  %td= number_to_currency movement.amount, delimiter: ".", precision: 0
+                  %td= movement.description 
+                  %td.options 
+                    .btn-group
+                      = link_to "Editar", edit_movement_path(movement), :class => "btn btn-default"
+                      = link_to "Eliminar", movement, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"
+
+        .module-footer
+          - if @balance.present?
+            %p.balance
+              %span Diponible
+              %strong= number_to_currency @balance, delimiter: ".", precision: 0
+
+
+          

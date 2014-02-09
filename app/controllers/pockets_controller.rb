@@ -6,11 +6,13 @@ class PocketsController < ApplicationController
   # GET /pockets.json
   def index
     @pockets = Pocket.all
+    @movements = Movement.where user_id: current_user.id
   end
 
   # GET /pockets/1
   # GET /pockets/1.json
   def show
+    @movements = Movement.where user_id: current_user.id
   end
 
   # GET /pockets/new
