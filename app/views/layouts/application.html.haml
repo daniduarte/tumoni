@@ -21,13 +21,14 @@
 
     .row
       .col-xs-12
-        %nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
+        %nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
           .container
             .navbar-header
               %a.navbar-brand(href="/") Tumoni
 
-            %ul.nav.navbar-nav
-              %li= link_to "Bolsillos", pockets_path
+            - if user_signed_in?
+              %ul.nav.navbar-nav
+                %li= link_to "Bolsillos", pockets_path
 
             %p.navbar-text.pull-right
               - if user_signed_in?
