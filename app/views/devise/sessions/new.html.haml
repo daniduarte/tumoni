@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-xs-3
+      &nbsp;
+    .col-xs-6
+      .module.module-default.no-hover
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-user
+            Entrar
+  
+        .module-body
+          = form_for resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-horizontal', role: 'form' } do |f|
+            .form-group
+              = f.label :email, 'Correo electrónico', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.email_field :email, :autofocus => true, class: 'form-control'
+
+            .form-group
+              = f.label :password, 'Contraseña', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.password_field :password, class: 'form-control'
+
+            / - if devise_mapping.rememberable?
+            /   .form-group
+            /     = f.label :remember_me, 'Recordarme', class: 'col-xs-3 control-label'
+            /     .col-xs-9
+            /       = f.check_box :remember_me, class: 'form-control'
+
+            .form-group
+              .col-xs-3
+                &nbsp;
+              .col-xs-9
+                = f.submit 'Entrar', class: 'btn btn-primary'
+
+        .module-footer
+          = render "devise/shared/links"

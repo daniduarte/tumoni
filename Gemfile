@@ -36,9 +36,8 @@ group :doc do
 end
 
 gem 'haml-rails'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails',
-                              :branch => '3.0.0'
+gem 'bootstrap-sass', '~> 3.1.0'
+gem "font-awesome-rails"
 
 gem 'devise'
 

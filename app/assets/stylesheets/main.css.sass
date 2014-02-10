@@ -1,5 +1,172 @@
+$color-primary: #1abc9c
+
+// Scaffolding
+$body-bg: #e7e7e7
+$link-color: $color-primary
+
+// Buttons
+$btn-primary-bg: $color-primary
+
+// Navbar
+$navbar-default-bg: $color-primary
+$navbar-default-color: white
+$navbar-default-link-color: white
+
+@import "bootstrap"
+@import "font-awesome"
+
+
 body
-  :padding-top 70px
+  padding-top: 80px
+  background: url(image_path('bg.jpg')) no-repeat center top
 
 .container
-  :width 960px !important
+  width: 960px !important
+
+
+
+.btn-outline-inverse
+  text-shadow: none
+  background-color: none
+  border-color: white
+  color: white
+  &:hover
+    background: white
+
+
+.jumbotron-inverse
+  background: none
+  border: 1px solid white
+  color: white
+  text-align: center
+  h1
+    font-weight: normal
+  p
+    margin-bottom: 0
+  .btn-outline-inverse
+    margin-top: 30px
+
+.module
+  background: white
+  border-radius: 0 0 4px 4px
+  border: 1px solid transparent
+  border-bottom: 3px solid transparent
+  position: relative
+  margin-bottom: 20px
+  &:hover
+    transition: all .5s ease
+
+.module-header
+  padding: 10px
+  border-bottom: 1px solid transparent
+  .title
+    font-weight: normal
+    margin: 0
+    font-size: 14px
+
+.module-body
+  padding: 10px
+
+.module-footer
+  border-top: 1px solid transparent
+
+.module-default
+  border-color: #dfe2e4
+  border-bottom-color: #bdc3c7
+  .module-header
+    border-color: #dfe2e4
+    color: #333
+    .fa
+      display: block
+      clear: both
+      margin-bottom: 3px
+      font-size: 10px
+    .title
+      font-size: 16px
+      padding-top: 3px
+  .module-body
+    background: whitesmoke
+    a
+      color: #777
+    .table
+      margin-bottom: 0
+    &.no-padding
+      padding: 0
+  .module-footer
+    border-color: #dfe2e4
+    padding: 10px 15px
+    .text-muted
+      font-size: 10px
+      margin: 0
+      color: #ccc
+    .link-block
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      height: 0
+      overflow: hidden
+      display: block
+      background: $color-primary
+      text-align: center
+      .fa-stack
+        font-size: 15px
+      .fa-inverse
+        color: $color-primary
+      .fa-circle
+        color: white
+      a, a:hover
+        text-decoration: none
+  &:hover:not(.no-hover)
+    border-color: $color-primary
+    .link-block
+      height: 35px
+      padding-top: 5px
+
+.balance
+  margin-bottom: 10px
+  position: relative
+  display: block
+  text-align: center
+  span
+    color: #ccc
+    position: absolute
+    bottom: -10px
+    right: 0
+    left: 0
+    text-align: center
+  strong
+    font-size: 32px
+    display: block
+    text-align: center
+
+.btn-add
+  height: 165px
+  text-align: center
+  position: relative
+  display: block
+  .fa
+    clear: both
+    display: block
+    font-size: 50px
+    position: absolute
+    top: 50px
+    left: 0
+    right: 0
+    color: #ccc
+  a
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    display: block
+    font-size: 16px
+    color: #ccc
+    padding-top: 105px
+  &:hover
+    a, .fa
+      color: $color-primary
+      text-decoration: none
+
+

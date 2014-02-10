@@ -1,27 +1,40 @@
 .container
   .row
+    - @pockets.each do |pocket|
 
-    .col-xs-12
+      - @balance = 0
+      - @movements.where(pocket_id: pocket.id).each do |m| 
+        - @balance = @balance + m.amount
 
-      %h1 Bolsillo
+      .col-xs-4
+        .module.module-default
+          .module-header
+            %h3.title.text-center
+              %i.fa.fa-suitcase
+              = pocket.name
+          .module-body
+            - if @balance.present?
+              %p.balance
+                %span Diponible
+                %strong= number_to_currency @balance, delimiter: ".", precision: 0
+          .module-footer
+            %p.text-muted.text-center Último movimiento hace 2 días
+            %nav.link-block
+              = link_to pocket do
+                .fa-stack.fa-lg(data-toggle="tooltip" data-placement="top" title="Tooltip on top")
+                  %i.fa.fa-circle.fa-stack-2x
+                  %i.fa.fa-eye.fa-stack-1x.fa-inverse
+              = link_to edit_pocket_path(pocket) do
+                .fa-stack.fa-lg(data-toggle="tooltip" data-placement="top" title="Tooltip on top")
+                  %i.fa.fa-circle.fa-stack-2x
+                  %i.fa.fa-edit.fa-stack-1x.fa-inverse
+              = link_to pocket, method: :delete, data: { confirm: 'Are you sure?' } do
+                .fa-stack.fa-lg(data-toggle="tooltip" data-placement="top" title="Tooltip on top")
+                  %i.fa.fa-circle.fa-stack-2x
+                  %i.fa.fa-trash-o.fa-stack-1x.fa-inverse
 
-      %table.table
-        %thead
-          %tr
-            %th Nombre
-            %th 
-            %th 
-            %th 
-
-
-        %tbody
-          - @pockets.each do |pocket|
-            %tr
-              %td= pocket.name
-              %td= link_to 'Show', pocket
-              %td= link_to 'Edit', edit_pocket_path(pocket)
-              %td= link_to 'Destroy', pocket, method: :delete, data: { confirm: 'Are you sure?' }
-
-      %br
-
-      = link_to 'Crear bolsillo', new_pocket_path, :class => "btn btn-primary"
+    .col-xs-4
+      .module.module-default
+        .btn-add
+          %i.fa.fa-plus
+          = link_to 'Crear bolsillo', new_pocket_path
