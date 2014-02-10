@@ -30,13 +30,17 @@
               %ul.nav.navbar-nav
                 %li= link_to "Bolsillos", pockets_path
 
-            %p.navbar-text.pull-right
+            %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
-                = current_user.email
-                = link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+                %li= link_to "Salir", destroy_user_session_path, method: :delete
 
               - else  
-                = link_to "Registro", new_user_registration_path, :class => 'navbar-link'
-                = link_to "Entrar", new_user_session_path, :class => 'navbar-link'
+                %li= link_to "Registro", new_user_registration_path
+                %li= link_to "Entrar", new_user_session_path
+
+            - if user_signed_in?
+              %p.navbar-text.pull-right
+                Hola, 
+                = current_user.email
 
   = yield

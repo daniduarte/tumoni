@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-xs-3
+      &nbsp;
+    .col-xs-6
+      .module.module-default.no-hover
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-user
+            Recordar contraseña
+  
+        .module-body
+          = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'form-horizontal', role: 'form' } do |f|
+            = devise_error_messages!
+
+            .form-group
+              = f.label :email, 'Correo electrónico', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = f.email_field :email, :autofocus => true, class: 'form-control'
+
+            .form-group
+              .col-xs-3
+                &nbsp;
+              .col-xs-9
+                = f.submit "Recuperar contraseña", class: 'btn btn-primary'
+
+
+        .module-footer
+          = render "devise/shared/links"
