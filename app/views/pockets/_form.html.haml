@@ -21,6 +21,8 @@
         .col-xs-9
           = f.text_field :name, class: 'form-control'
 
+      = f.hidden_field :user_id, :value => current_user.id 
+
       .form-group
         .col-xs-3
           &nbsp;
