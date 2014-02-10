@@ -7,9 +7,7 @@
   = csrf_meta_tags
 
 %body
-
   .container
-
     - if notice
       .alert.alert-success
         %button.close(data-dismiss="alert") &times;
@@ -29,6 +27,9 @@
             - if user_signed_in?
               %ul.nav.navbar-nav
                 %li= link_to "Bolsillos", pockets_path
+
+                - if current_user.type_id == 1
+                  %li= link_to "Administración", history_path
 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
