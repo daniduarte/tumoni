@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-xs-12
+      .module.module-default
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-bar-chart-o
+            Historial de movimientos
+
+        .module-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th Fecha
+                %th Monto
+                %th Descripción
+                %th Movimiento origen
+                %th Bolsillo origen
+            %tbody
+              - @movement_history.each do |h|
+                %tr
+                  %td= h.created_at.strftime("%d/%m/%Y %H:%S")
+                  %td= number_to_currency h.amount, delimiter: ".", precision: 0
+                  %td= h.description
+                  %td= h.movement_id
+                  %td= h.pocket_id
+
+
+
