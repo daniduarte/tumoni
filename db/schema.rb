@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207145318) do
+ActiveRecord::Schema.define(version: 20140210142440) do
 
   create_table "movement_histories", force: true do |t|
     t.text     "description"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140207145318) do
     t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
