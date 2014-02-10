@@ -18,7 +18,9 @@
                 %span Diponible
                 %strong= number_to_currency @balance, delimiter: ".", precision: 0
           .module-footer
-            %p.text-muted.text-center Último movimiento hace 2 días
+            %p.text-muted.text-center
+              Bolsillo llamado 
+              = pocket.name
             %nav.link-block
               = link_to pocket do
                 .fa-stack.fa-lg(data-toggle="tooltip" data-placement="top" title="Tooltip on top")
