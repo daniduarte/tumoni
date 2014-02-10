@@ -5,7 +5,7 @@ class PocketsController < ApplicationController
   # GET /pockets
   # GET /pockets.json
   def index
-    @pockets = Pocket.all
+    @pockets = Pocket.where user_id: current_user.id
     @movements = Movement.where user_id: current_user.id
   end
 
