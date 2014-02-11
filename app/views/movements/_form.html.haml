@@ -9,12 +9,13 @@
 
   .module-body
     = form_for @movement, html: { class: 'form-horizontal', role: 'form' } do |f|
-      / - if @movement.errors.any?
-      /   #error_explanation
-      / %h2= pluralize@movement.errors.count, "error"
-      / %ul
-      /   - @movement.errors.full_messages.each do |msg|
-      /     %li= msg
+      .hide
+        - if @movement.errors.any?
+          #error_explanation
+        %h2= pluralize@movement.errors.count, "error"
+        %ul
+          - @movement.errors.full_messages.each do |msg|
+            %li= msg
 
       .form-group
         = f.label :description, 'Descripción', class: 'col-xs-3 control-label'

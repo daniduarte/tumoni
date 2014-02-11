@@ -9,12 +9,13 @@
 
   .module-body
     = form_for @pocket, html: { class: 'form-horizontal', role: 'form' } do |f|
-      / - if @pocket.errors.any?
-      /   #error_explanation
-      / %h2= pluralize(@pocket.errors.count, "error") prohibited this pocket from being saved:
-      / %ul
-      /   - @pocket.errors.full_messages.each do |msg|
-      /     %li= msg
+      .hide
+        - if @pocket.errors.any?
+          #error_explanation
+        %h2= pluralize(@pocket.errors.count, "error") prohibited this pocket from being saved:
+        %ul
+          - @pocket.errors.full_messages.each do |msg|
+            %li= msg
 
       .form-group
         = f.label :name, 'Nombre', class: 'col-xs-3 control-label'
