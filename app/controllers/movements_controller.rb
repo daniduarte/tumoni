@@ -5,8 +5,6 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    # @movements = Movement.where user_id: current_user.id
-    # @pockets = Pocket.all
     redirect_to pockets_url
   end
 
@@ -19,7 +17,6 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
-    # @pocket = Pocket.where id: params[:pocket_id]
   end
 
   # GET /movements/1/edit
