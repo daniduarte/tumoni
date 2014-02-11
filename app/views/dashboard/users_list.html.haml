@@ -1,0 +1,27 @@
+.container
+  .row
+    .col-xs-12
+      .module.module-default.no-hover
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-user
+            Usuarios registrados
+
+        .module-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th Fecha de registro
+                %th Usuario
+                %th Ultimo ingreso
+                %th Cantidad de ingresos
+            %tbody
+              - @users.each do |u|
+                %tr
+                  %td= u.created_at.strftime("%d/%m/%Y %H:%S")
+                  %td= u.email
+                  %td= u.last_sign_in_at
+                  %td= u.sign_in_count
+
+
+
