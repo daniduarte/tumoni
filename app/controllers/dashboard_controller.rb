@@ -16,4 +16,12 @@ class DashboardController < ApplicationController
       redirect_to pockets_path
     end
   end
+
+  def users_list
+    if current_user.type_id == 1
+      @users = User.all
+    else
+      redirect_to pockets_path
+    end
+  end
 end
