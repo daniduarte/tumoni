@@ -27,7 +27,9 @@
           = f.text_field :amount, class: 'form-control'
           
       = f.hidden_field :user_id, :value => current_user.id 
-      = f.hidden_field :pocket_id, :value => params[:pocket_id]
+
+      - if @movement.new_record?
+        = f.hidden_field :pocket_id, :value => params[:pocket_id]
 
       / .form-group
       /   = f.label :pocket_id, 'Bolsillo', class: 'col-xs-3 control-label'
