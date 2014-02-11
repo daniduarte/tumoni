@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211011639) do
+ActiveRecord::Schema.define(version: 20140211014051) do
 
   create_table "movement_histories", force: true do |t|
     t.text     "description"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20140211011639) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "pockets_histories", force: true do |t|
+    t.text     "name"
+    t.integer  "pocket_id"
+    t.integer  "user_id"
+    t.integer  "action_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

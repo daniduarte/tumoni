@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-xs-12
+      .module.module-default.no-hover
+        .module-header
+          %h3.title.text-center
+            %i.fa.fa-bar-chart-o
+            Historial de bolsillos
+
+        .module-body.no-padding
+          %table.table
+            %thead
+              %tr
+                %th Fecha
+                %th Acción
+                %th Nombre
+                %th Bolsillo origen
+            %tbody
+              - @pockets_history.each do |h|
+
+                - if h.action_id == 1
+                  - action = 'Crear'
+                - elsif h.action_id == 2
+                  - action = 'Editar'
+                - elsif h.action_id == 3
+                  - action = 'Borrar'
+                - else
+                  - action = 'No registrado'
+
+                %tr
+                  %td= h.created_at.strftime("%d/%m/%Y %H:%S")
+                  %td= action
+                  %td= h.name
+                  %td= h.pocket_id
+
+
+
