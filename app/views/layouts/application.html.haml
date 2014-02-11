@@ -29,7 +29,13 @@
                 %li= link_to "Bolsillos", pockets_path
 
                 - if current_user.type_id == 1
-                  %li= link_to "Administración", history_path
+                  %li.dropdown
+                    %a.dropdown-toggle(href="#" data-toggle="dropdown")
+                      Historial 
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to "Movimientos", movements_history_path
+
 
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
