@@ -12,7 +12,7 @@
       .hide
         - if @pocket.errors.any?
           #error_explanation
-        %h2= pluralize(@pocket.errors.count, "error") prohibited this pocket from being saved:
+        %h2= pluralize @pocket.errors.count, "error"
         %ul
           - @pocket.errors.full_messages.each do |msg|
             %li= msg

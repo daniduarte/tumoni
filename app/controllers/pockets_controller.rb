@@ -24,6 +24,16 @@ class PocketsController < ApplicationController
   def edit
   end
 
+  def pocket_history(pocket, action)
+    @pocket_history = PocketsHistory.new(
+      :name => pocket.name,
+      :pocket_id => pocket.id,
+      :user_id => pocket.user_id,
+      :action_id => action)
+
+    @pocket_history.save
+  end
+
   # POST /pockets
   # POST /pockets.json
   def create
@@ -33,6 +43,7 @@ class PocketsController < ApplicationController
       if @pocket.save
         format.html { redirect_to pockets_url, notice: 'Pocket was successfully created.' }
         format.json { render action: 'show', status: :created, location: @pocket }
+        pocket_history @pocket, 1
       else
         format.html { render action: 'new' }
         format.json { render json: @pocket.errors, status: :unprocessable_entity }
@@ -47,6 +58,7 @@ class PocketsController < ApplicationController
       if @pocket.update(pocket_params)
         format.html { redirect_to @pocket, notice: 'Pocket was successfully updated.' }
         format.json { head :no_content }
+        pocket_history @pocket, 2
       else
         format.html { render action: 'edit' }
         format.json { render json: @pocket.errors, status: :unprocessable_entity }
@@ -57,7 +69,10 @@ class PocketsController < ApplicationController
   # DELETE /pockets/1
   # DELETE /pockets/1.json
   def destroy
+    pocket_history @pocket, 3
+
     @pocket.destroy
+
     respond_to do |format|
       format.html { redirect_to pockets_url }
       format.json { head :no_content }
@@ -72,6 +87,6 @@ class PocketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pocket_params
-      params.require(:pocket).permit(:name, :user_id)
+      params.require(:pocket).permit(:name, :user_id, :pocket_id)
     end
 end

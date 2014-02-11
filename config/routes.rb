@@ -1,5 +1,7 @@
 Tumoni::Application.routes.draw do
-  get "history" => "dashboard#index", as: :history
+  get "movements_history" => "dashboard#movements_history", as: :movements_history
+  get "pockets_history" => "dashboard#pockets_history", as: :pockets_history
+
   get "welcome/index"
   devise_for :users
   resources :pockets

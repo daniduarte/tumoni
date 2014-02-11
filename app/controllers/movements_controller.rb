@@ -5,8 +5,6 @@ class MovementsController < ApplicationController
   # GET /movements
   # GET /movements.json
   def index
-    # @movements = Movement.where user_id: current_user.id
-    # @pockets = Pocket.all
     redirect_to pockets_url
   end
 
@@ -19,35 +17,20 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @movement = Movement.new
-    # @pocket = Pocket.where id: params[:pocket_id]
   end
 
   # GET /movements/1/edit
   def edit
   end
 
-  def movement_history_create
-    last_movement = Movement.last
-
+  def movement_history(movement, action)
     @movement_history = MovementHistory.new(
-      :description => last_movement.description,
-      :amount => last_movement.amount, 
-      :movement_id => last_movement.id,
-      :pocket_id => last_movement.pocket_id,
-      :user_id => last_movement.user_id)
-
-    @movement_history.save
-  end
-
-  def movement_history_update
-    last_movement = Movement.order(updated_at: :desc).take
-
-    @movement_history = MovementHistory.new(
-      :description => last_movement.description,
-      :amount => last_movement.amount, 
-      :movement_id => last_movement.id,
-      :pocket_id => last_movement.pocket_id,
-      :user_id => last_movement.user_id)
+      :description => movement.description,
+      :amount => movement.amount, 
+      :movement_id => movement.id,
+      :pocket_id => movement.pocket_id,
+      :user_id => movement.user_id,
+      :movement_type_id => action)
 
     @movement_history.save
   end
@@ -61,7 +44,7 @@ class MovementsController < ApplicationController
       if @movement.save
         format.html { redirect_to "/pockets/#{@movement.pocket_id}", notice: 'Movement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @movement }
-        movement_history_create
+        movement_history @movement, 1
       else
         format.html { render action: 'new' }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
@@ -76,7 +59,7 @@ class MovementsController < ApplicationController
       if @movement.update(movement_params)
         format.html { redirect_to @movement, notice: 'Movement was successfully updated.' }
         format.json { head :no_content }
-        movement_history_update
+        movement_history @movement, 2
       else
         format.html { render action: 'edit' }
         format.json { render json: @movement.errors, status: :unprocessable_entity }
@@ -87,7 +70,10 @@ class MovementsController < ApplicationController
   # DELETE /movements/1
   # DELETE /movements/1.json
   def destroy
+    movement_history @movement, 3
+
     @movement.destroy
+
     respond_to do |format|
       format.html { redirect_to pockets_url }
       format.json { head :no_content }
