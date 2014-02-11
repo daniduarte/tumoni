@@ -9,12 +9,13 @@
 
   .module-body
     = form_for @movement, html: { class: 'form-horizontal', role: 'form' } do |f|
-      / - if @movement.errors.any?
-      /   #error_explanation
-      / %h2= pluralize@movement.errors.count, "error"
-      / %ul
-      /   - @movement.errors.full_messages.each do |msg|
-      /     %li= msg
+      .hide
+        - if @movement.errors.any?
+          #error_explanation
+        %h2= pluralize@movement.errors.count, "error"
+        %ul
+          - @movement.errors.full_messages.each do |msg|
+            %li= msg
 
       .form-group
         = f.label :description, 'Descripción', class: 'col-xs-3 control-label'
@@ -27,12 +28,9 @@
           = f.text_field :amount, class: 'form-control'
           
       = f.hidden_field :user_id, :value => current_user.id 
-      = f.hidden_field :pocket_id, :value => params[:pocket_id]
 
-      / .form-group
-      /   = f.label :pocket_id, 'Bolsillo', class: 'col-xs-3 control-label'
-      /   .col-xs-9
-      /     = f.select :pocket_id, Pocket.all.collect {|p| [p.name, p.id]}
+      - if @movement.new_record?
+        = f.hidden_field :pocket_id, :value => params[:pocket_id]
 
       .form-group
         .col-xs-3
