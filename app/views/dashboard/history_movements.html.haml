@@ -1,7 +1,7 @@
 .container
   .row
     .col-xs-12
-      .module.module-default
+      .module.module-default.no-hover
         .module-header
           %h3.title.text-center
             %i.fa.fa-bar-chart-o
@@ -13,14 +13,26 @@
               %tr
                 %th Fecha
                 %th Monto
+                %th Acción
                 %th Descripción
                 %th Movimiento origen
                 %th Bolsillo origen
             %tbody
               - @movement_history.each do |h|
+
+                - if h.movement_type_id == 1
+                  - movement_type = 'Crear'
+                - elsif h.movement_type_id == 2
+                  - movement_type = 'Editar'
+                - elsif h.movement_type_id == 3
+                  - movement_type = 'Borrar'
+                - else
+                  - movement_type = 'No registrado'
+
                 %tr
                   %td= h.created_at.strftime("%d/%m/%Y %H:%S")
                   %td= number_to_currency h.amount, delimiter: ".", precision: 0
+                  %td= movement_type
                   %td= h.description
                   %td= h.movement_id
                   %td= h.pocket_id
