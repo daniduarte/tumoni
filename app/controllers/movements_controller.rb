@@ -38,7 +38,17 @@ class MovementsController < ApplicationController
   # POST /movements
   # POST /movements.json
   def create
-    @movement = Movement.new(movement_params)
+    params = movement_params
+
+    if params[:amount].blank?
+      params[:amount] = 0
+    end
+
+    if params[:description].blank?
+      params[:description] = 'Movimiento sin nombre'
+    end
+
+    @movement = Movement.new(params)
 
     respond_to do |format|
       if @movement.save
@@ -55,8 +65,18 @@ class MovementsController < ApplicationController
   # PATCH/PUT /movements/1
   # PATCH/PUT /movements/1.json
   def update
+    params = movement_params
+
+    if params[:amount].blank?
+      params[:amount] = 0
+    end
+
+    if params[:description].blank?
+      params[:description] = 'Movimiento sin nombre'
+    end
+
     respond_to do |format|
-      if @movement.update(movement_params)
+      if @movement.update(params)
         format.html { redirect_to @movement, notice: 'Movement was successfully updated.' }
         format.json { head :no_content }
         movement_history @movement, 2
