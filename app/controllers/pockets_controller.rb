@@ -37,7 +37,13 @@ class PocketsController < ApplicationController
   # POST /pockets
   # POST /pockets.json
   def create
-    @pocket = Pocket.new(pocket_params)
+    params = pocket_params
+
+    if params[:name].blank?
+      params[:name] = 'Bolsillo sin nombre'
+    end
+
+    @pocket = Pocket.new(params)
 
     respond_to do |format|
       if @pocket.save
@@ -54,8 +60,14 @@ class PocketsController < ApplicationController
   # PATCH/PUT /pockets/1
   # PATCH/PUT /pockets/1.json
   def update
+    params = pocket_params
+
+    if params[:name].blank?
+      params[:name] = 'Bolsillo sin nombre'
+    end
+    
     respond_to do |format|
-      if @pocket.update(pocket_params)
+      if @pocket.update(params)
         format.html { redirect_to @pocket, notice: 'Pocket was successfully updated.' }
         format.json { head :no_content }
         pocket_history @pocket, 2
