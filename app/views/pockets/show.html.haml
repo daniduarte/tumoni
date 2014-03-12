@@ -29,7 +29,7 @@
                 %th Descripci&oacute;n
                 %th Opciones
             %tbody
-              - @movements.where(pocket_id: @pocket.id).each do |movement|
+              - @movements.where(pocket_id: @pocket.id).order('created_at DESC').each do |movement|
                 %tr 
                   %td.hidden-xs= movement.created_at.strftime("%d/%m/%Y")
                   %td= number_to_currency movement.amount, delimiter: ".", precision: 0
